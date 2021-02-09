@@ -14,7 +14,7 @@ export default class Species extends EventEmitter {
         this.classification = null;
     }
 
-    get events() {
+    static get events() {
         return EVENTS;
     }
 
@@ -28,7 +28,9 @@ export default class Species extends EventEmitter {
         this.name = data.name;
         this.classification = data.classification;
 
-        this.emit(this.events.SPECIES_CREATED, () => {console.log('species_created is emitted')});
+        console.log('This is in the init method')
+
+        this.emit(Species.events.SPECIES_CREATED);
 
     }
 }

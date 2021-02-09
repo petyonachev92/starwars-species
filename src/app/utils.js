@@ -2,6 +2,8 @@
  * Here you can define helper functions to use across your app.
  */
 
+import Species from "./custom/Species";
+
 export default function _onSpeciesCreated(obj, obj2) {
     console.log('event');
     obj2.species.push(obj);
@@ -9,7 +11,10 @@ export default function _onSpeciesCreated(obj, obj2) {
     console.log(obj2.species);
 
     
-    obj.emit(obj.events.SPECIES_CREATED);
+    obj.emit(Species.events.SPECIES_CREATED,
+        {
+            speciesCount: obj2.speciesCount
+        });
 
     console.log('end')
 };

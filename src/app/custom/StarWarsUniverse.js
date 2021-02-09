@@ -17,7 +17,7 @@ export default class StarWarsUniverse extends EventEmitter {
         this.species = new Array()
     }
 
-    get events() {
+    static get events() {
         return EVENTS;
     }
 
@@ -30,8 +30,8 @@ export default class StarWarsUniverse extends EventEmitter {
         console.log('created new Species')
 
         
-        speciesObj.addListener(speciesObj.events.SPECIES_CREATED,
-            _onSpeciesCreated.bind(speciesObj, this), this);
+        speciesObj.addListener(Species.events.MAX_SPECIES_REACHED,
+            _onSpeciesCreated.bind(null, (speciesObj, this), this));
             
         await speciesObj.init(url)
         id++;

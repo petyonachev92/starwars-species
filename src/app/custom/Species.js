@@ -28,10 +28,7 @@ export default class Species extends EventEmitter {
         this.name = data.name;
         this.classification = data.classification;
 
-        this.emit(this.events.SPECIES_CREATED);
-
-        id++;
-        console.log(id)
+        this.emit(this.events.SPECIES_CREATED, () => {console.log('species_created is emitted')});
 
     }
 }

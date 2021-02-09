@@ -9,10 +9,7 @@ export default function _onSpeciesCreated(obj, obj2) {
     console.log(obj2.species);
 
     
-    obj.emit(obj2.events.SPECIES_CREATED,
-        {
-            speciesCount: obj2.speciesCount
-        });
+    obj.emit(obj.events.SPECIES_CREATED);
 
     console.log('end')
 };

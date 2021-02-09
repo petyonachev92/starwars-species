@@ -29,11 +29,12 @@ export default class StarWarsUniverse extends EventEmitter {
         const speciesObj = new Species();
         console.log('created new Species')
 
+        
+        speciesObj.addListener(speciesObj.events.SPECIES_CREATED,
+            _onSpeciesCreated.bind(speciesObj, this), this);
+            
         await speciesObj.init(url)
-        speciesObj.addListener('species_created', _onSpeciesCreated(speciesObj, this), this)
-        speciesObj.on(speciesObj.events.SPECIES_CREATED,
-            _onSpeciesCreated(speciesObj, this), this);
-
+        id++;
         
         console.log('after the listener')
         console.log(speciesObj)

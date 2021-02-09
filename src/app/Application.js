@@ -1,5 +1,6 @@
 import config from '../config';
 import EventEmitter from 'eventemitter3';
+import StarWarsUniverse from './custom/StarWarsUniverse';
 
 const EVENTS = {
   APP_READY: 'app_ready',
@@ -31,6 +32,14 @@ export default class Application extends EventEmitter {
    */
   async init() {
     // Initiate classes and wait for async operations here.
+
+    const universe = new StarWarsUniverse(config._maxSpecies);
+    console.log(config._maxSpecies)
+    console.log(universe.speciesCount)
+    
+    universe.createSpecies();
+
+    universe.emit(universe.events.MAX_SPECIES_REACHED)
 
     this.emit(Application.events.APP_READY);
   }

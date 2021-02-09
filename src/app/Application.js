@@ -41,6 +41,8 @@ export default class Application extends EventEmitter {
 
     universe.emit(universe.events.MAX_SPECIES_REACHED)
 
+    this.data.universe = universe
+
     this.emit(Application.events.APP_READY);
   }
 }

@@ -27,7 +27,7 @@ export default class StarWarsUniverse extends EventEmitter {
        const species = new Species();
        let id = this.speciesCount + 1
 
-       species.on.bind(Species.events.SPECIES_CREATED, this._onSpeciesCreated(species));
+       species.once.bind(Species.events.SPECIES_CREATED, this._onSpeciesCreated(species));
 
        await species.init(url + `${id}/`);
        

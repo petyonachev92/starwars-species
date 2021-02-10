@@ -2,6 +2,7 @@
  * Here you can define helper functions to use across your app.
  */
 
+/* import config from "../config";
 import Species from "./custom/Species";
 
 export default function _onSpeciesCreated(obj, obj2) {
@@ -16,5 +17,8 @@ export default function _onSpeciesCreated(obj, obj2) {
             speciesCount: obj2.speciesCount
         });
 
-    console.log('end')
-};
+    
+    if (obj2.speciesCount !== config._maxSpecies) {
+        this.createSpecies
+    }
+}; */

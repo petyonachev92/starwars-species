@@ -1,10 +1,11 @@
 import EventEmitter from "eventemitter3";
 import Species from "./Species";
-import _onSpeciesCreated from '../utils'
+import config from '../../config'
+/* import _onSpeciesCreated from '../utils' */
 
 let id = 1
 
-const url = `https://swapi.booost.bg/api/species/${id}/`
+const url = `https://swapi.dev/api/species/${id}/`
 
 const EVENTS = {
     MAX_SPECIES_REACHED: 'max_species_reached',
@@ -12,9 +13,9 @@ const EVENTS = {
 }
 
 export default class StarWarsUniverse extends EventEmitter {
-    constructor(_maxSpecies) {
+    constructor(_maxSpecies = 10) {
         super()
-        this.species = new Array()
+        this.species = []
     }
 
     static get events() {
@@ -26,17 +27,26 @@ export default class StarWarsUniverse extends EventEmitter {
     }
 
     async createSpecies() {
-        const speciesObj = new Species();
-        console.log('created new Species')
+       const species = new Species();
 
-        
-        speciesObj.addListener(Species.events.MAX_SPECIES_REACHED,
-            _onSpeciesCreated.bind(null, (speciesObj, this), this));
-            
-        await speciesObj.init(url)
-        id++;
-        
-        console.log('after the listener')
-        console.log(speciesObj)
+       species.once.bind(null, (Species.events.SPECIES_CREATED, this._onSpeciesCreated(species)))
+
+       console.log(id)
+       await species.init(url);
+       
     }
+
+    async _onSpeciesCreated(obj) {
+        this.species.push(obj);
+
+        this.emit(StarWarsUniverse.events.SPECIES_CREATED, this.speciesCount);
+        id++;
+
+
+        if(this.speciesCount !== config.maxSpeciesCount) {
+            await this.createSpecies();
+        } else {
+            this.emit(StarWarsUniverse.events.MAX_SPECIES_REACHED)
+        }
+    };
 }

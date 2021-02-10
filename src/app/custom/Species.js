@@ -1,6 +1,9 @@
 import config from '../../config'
 import EventEmitter from "eventemitter3";
 
+
+/* const url = `https://swapi.dev/api/species/${id}/` */
+
 const EVENTS = {
     SPECIES_CREATED: 'species_created'
 }
@@ -19,18 +22,17 @@ export default class Species extends EventEmitter {
     }
 
     async init(url) {
-        console.log('Species init')
-        const response = await fetch(url);
-        const data = await response.json();
+        const resp = await fetch(url);
+        const data = await resp.json();
 
-        console.log(data)
+        this.name = await data.name;
+        this.classification = await data.classification;
 
-        this.name = data.name;
-        this.classification = data.classification;
+        console.log(this.name)
+        console.log(this.classification)
+        console.log(url)
 
-        console.log('This is in the init method')
-
-        this.emit(Species.events.SPECIES_CREATED);
-
+        this.emit(Species.events.SPECIES_CREATED, this)
+    
     }
 }

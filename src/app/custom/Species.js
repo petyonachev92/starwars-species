@@ -25,8 +25,8 @@ export default class Species extends EventEmitter {
         const resp = await fetch(url);
         const data = await resp.json();
 
-        this.name = await data.name;
-        this.classification = await data.classification;
+        this.name = data.name;
+        this.classification = data.classification;
 
         console.log(this.name)
         console.log(this.classification)

@@ -13,9 +13,9 @@ const EVENTS = {
 }
 
 export default class StarWarsUniverse extends EventEmitter {
-    constructor(_maxSpecies = 10) {
+    constructor(_maxSpecies = config.maxSpeciesCount) {
         super()
-        this.species = []
+        this.species = new Array()
     }
 
     static get events() {

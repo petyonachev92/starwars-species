@@ -5,7 +5,7 @@ import config from '../../config'
 
 let id = 1
 
-const url = `https://swapi.dev/api/species/${id}/`
+const url = `https://swapi.booost.bg/api/species/${id}/`
 
 const EVENTS = {
     MAX_SPECIES_REACHED: 'max_species_reached',

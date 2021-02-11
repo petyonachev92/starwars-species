@@ -23,13 +23,15 @@ export default class StarWarsUniverse extends EventEmitter {
         return this.species.length;
     }
 
-    async createSpecies() {
+    createSpecies() {
        const species = new Species();
        let id = this.speciesCount + 1
+       console.log(id)
 
-       species.once.bind(Species.events.SPECIES_CREATED, this._onSpeciesCreated());
+       species.once.bind(Species.events.SPECIES_CREATED, this._onSpeciesCreated(species));
 
        species.init(url + `${id}/`);
+       
 
        /* this.on.bind(StarWarsUniverse.events.SPECIES_CREATED, this._onUniverseSpecies(this.speciesCount)) */      
     }
@@ -42,6 +44,7 @@ export default class StarWarsUniverse extends EventEmitter {
         if(this.speciesCount === 10) {
             this.emit(StarWarsUniverse.events.MAX_SPECIES_REACHED);
         }
+        
     };
     
     /* _onUniverseSpecies(count) {

@@ -36,14 +36,13 @@ export default class Application extends EventEmitter {
     let universe = new StarWarsUniverse();
     console.log('Universe created!')
        
-    await universe.createSpecies();
+    universe.createSpecies();
 
     console.log(universe.species)
     console.log(universe.speciesCount)
 
-    this.data.universe = universe;
-
-    console.log(this.data)
+    this.data.universe = universe
+    console.log(universe)
 
     this.emit(Application.events.APP_READY);
   }

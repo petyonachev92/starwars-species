@@ -18,6 +18,7 @@ export default class Application extends EventEmitter {
     this.data = {};
 
     this.init();
+    
   }
 
   static get events() {
@@ -36,10 +37,10 @@ export default class Application extends EventEmitter {
     let universe = new StarWarsUniverse();
     console.log('Universe created!')
        
-    universe.createSpecies();
+    while(universe.speciesCount < 10){
 
-    console.log(universe.species)
-    console.log(universe.speciesCount)
+      universe.createSpecies();
+    }
 
     this.data.universe = universe
     console.log(universe)

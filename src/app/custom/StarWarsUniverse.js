@@ -31,26 +31,21 @@ export default class StarWarsUniverse extends EventEmitter {
 
        species.init(url + `${id}/`);
 
-       this.on.bind(StarWarsUniverse.events.SPECIES_CREATED, this._onUniverseSpecies(this.speciesCount))
-       
-       
+       /* this.on.bind(StarWarsUniverse.events.SPECIES_CREATED, this._onUniverseSpecies(this.speciesCount)) */      
     }
 
     _onSpeciesCreated(obj) {
         this.species.push(obj);
 
-        console.log('before emitting event')
-        this.emit(StarWarsUniverse.events.SPECIES_CREATED, this.speciesCount);
-        
-        
+        this.emit(StarWarsUniverse.events.SPECIES_CREATED, this.speciesCount);       
     };
     
-    _onUniverseSpecies(count) {
+    /* _onUniverseSpecies(count) {
         if(count < config.maxSpeciesCount) {
             this.createSpecies();
         } else {
             this.emit(StarWarsUniverse.events.MAX_SPECIES_REACHED)
         }
 
-    }
+    } */
 }

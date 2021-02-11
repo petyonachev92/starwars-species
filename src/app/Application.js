@@ -34,7 +34,7 @@ export default class Application extends EventEmitter {
   async init() {
     // Initiate classes and wait for async operations here.
 
-    let universe = new StarWarsUniverse();
+    const universe = new StarWarsUniverse();
     console.log('Universe created!')
        
     while(universe.speciesCount < config.maxSpeciesCount){
@@ -44,6 +44,7 @@ export default class Application extends EventEmitter {
 
     this.data.universe = universe
     console.log(universe)
+    universe.emit(StarWarsUniverse.events.MAX_SPECIES_REACHED);
 
     this.emit(Application.events.APP_READY);
   }

@@ -41,9 +41,9 @@ export default class StarWarsUniverse extends EventEmitter {
 
         this.emit(StarWarsUniverse.events.SPECIES_CREATED, this.speciesCount); 
         
-        if(this.speciesCount === 10) {
+        /* if(this.speciesCount === 10) {
             this.emit(StarWarsUniverse.events.MAX_SPECIES_REACHED);
-        }
+        } */
         
     };
     

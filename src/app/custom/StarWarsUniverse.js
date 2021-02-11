@@ -5,7 +5,7 @@ import config from '../../config'
 
 const url = 'https://swapi.booost.bg/api/species/'
 const EVENTS = {
-    MAX_SPECIES_REACHED: 'max_species_reached',
+    MAX_SPECIES_REACHED: 'max_species_reached', 
     SPECIES_CREATED: 'species_created'
 }
 
@@ -37,7 +37,11 @@ export default class StarWarsUniverse extends EventEmitter {
     _onSpeciesCreated(obj) {
         this.species.push(obj);
 
-        this.emit(StarWarsUniverse.events.SPECIES_CREATED, this.speciesCount);       
+        this.emit(StarWarsUniverse.events.SPECIES_CREATED, this.speciesCount); 
+        
+        if(this.speciesCount === 10) {
+            this.emit(StarWarsUniverse.events.MAX_SPECIES_REACHED);
+        }
     };
     
     /* _onUniverseSpecies(count) {

@@ -41,10 +41,8 @@ export default class Application extends EventEmitter {
 
       universe.createSpecies();
     }
-
-    universe.emit(StarWarsUniverse.events.MAX_SPECIES_REACHED)
-
-
+    
+    this.once.bind(StarWarsUniverse.events.MAX_SPECIES_REACHED, console.log('MAX'))
 
     this.data.universe = universe
     console.log(universe)

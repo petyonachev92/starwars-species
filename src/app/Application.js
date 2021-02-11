@@ -37,10 +37,14 @@ export default class Application extends EventEmitter {
     let universe = new StarWarsUniverse();
     console.log('Universe created!')
        
-    while(universe.speciesCount < 10){
+    while(universe.speciesCount < config.maxSpeciesCount){
 
       universe.createSpecies();
     }
+
+    universe.emit(StarWarsUniverse.events.MAX_SPECIES_REACHED)
+
+
 
     this.data.universe = universe
     console.log(universe)
